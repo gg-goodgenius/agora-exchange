@@ -7,15 +7,21 @@
 </div>
 <p>&#160;</p>
 <p align="center">Our team:</p>
-<div id="badges" align="center">
+<div id="badges" align="left">
   </a>
   <a href="https://t.me/ruha02">
     <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="130" alt="Telegram"/>
   </a>
-  <a href="https://t.me/Timofey1566">
+</div>
+
+<div id="badges" align="center">
+<a href="https://t.me/Timofey1566">
     <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="130" alt="Telegram"/>
   </a>
-  <a href="https://t.me/OlyaBaskakowa">
+</div>
+
+<div id="badges" align="right">
+<a href="https://t.me/OlyaBaskakowa">
     <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="130" alt="Telegram"/>
   </a>
 </div>
