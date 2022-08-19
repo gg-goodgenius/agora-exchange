@@ -1,41 +1,40 @@
+import datetime
+
 from bs4 import BeautifulSoup
 
+start_time = datetime.datetime.now()
 file = open('case_2_input_big_data.xml', 'r')
 xml_file = file.read()
 
 soup = BeautifulSoup(xml_file, 'xml')
 
 for item in soup.find_all("ГруппаНоменклатура"):
-    print(f"Группа Номенклатура\n"
-          f"Ссылка - {item.findNext('Ссылка').text}\n"
-          f"Родитель - {item.findNext('Родитель').text}\n"
-          f"Наименование - {item.findNext('Наименование').text}\n"
-          f"Пометка Удаления - {item.findNext('ПометкаУдаления').text}")
-    print('-----------------------------------------------')
+    url = item.findNext('Ссылка').text
+    parent = item.findNext('Родитель').text
+    name = item.findNext('Наименование').text
+    tag = item.findNext('ПометкаУдаления').text
 
 for item in soup.find_all("ЕдиницыИзмерения"):
-    print(f"Единицы Измерения\n"
-          f"Наименование - {item.findNext('Наименование').text}\n"
-          f"Ссылка - {item.findNext('Ссылка').text}\n"
-          f"Наименование Полное - {item.findNext('НаименованиеПолное').text}\n"
-          f"Коэффициент - {item.findNext('Коэффициент').text}")
-    print('-----------------------------------------------')
+    url = item.findNext('Ссылка').text
+    name = item.findNext('Наименование').text
+    full_name = item.findNext('НаименованиеПолное').text
+    coefficient = item.findNext('Коэффициент').text
 
 for item in soup.find_all("Номенклатура"):
-    print(f"Номенклатура\n"
-          f"Ссылка - {item.findNext('Ссылка').text}\n"
-          f"Родитель - {item.findNext('Родитель').text}\n"
-          f"Пометка Удаления - {item.findNext('ПометкаУдаления').text}\n"
-          f"Артикул - {item.findNext('Артикул').text}\n"
-          f"Наименование - {item.findNext('Наименование').text}\n"
-          f"Ставка НДС - {item.findNext('СтавкаНДС').text}\n"
-          f"Описание - {item.findNext('Описание').text}\n"
-          f"Единица Хранения Остатков - {item.findNext('ЕдиницаХраненияОстатков').text}\n"
-          f"Вести Учет По Характеристикам - {item.findNext('ВестиУчетПоХарактеристикам')}\n"
-          f"ТипНоменклатуры - {item.findNext('ТипНоменклатуры').text}\n"
-          f"Штрихкод - {item.findNext('Штрихкод').text}\n"
-          f"Файл - {item.findNext('Файл').text}\n"
-          f"Путь - {item.findNext('Путь').text}\n"
-          f"Основное - {item.findNext('Основное').text}\n"
-          )
-    print('-----------------------------------------------')
+    url = item.findNext('Ссылка').text
+    parent = item.findNext('Родитель').text
+    name = item.findNext('Наименование').text
+    tag = item.findNext('ПометкаУдаления').text
+    article = item.findNext('Артикул').text
+    nds = item.findNext('СтавкаНДС').text
+    description = item.findNext('Описание').text
+    storage_unit = item.findNext('ЕдиницаХраненияОстатков').text
+    characteristic = item.findNext('ВестиУчетПоХарактеристикам')
+    type = item.findNext('ТипНоменклатуры').text
+    barcode = item.findNext('Штрихкод').text
+    file = item.findNext('Файл').text
+    path = item.findNext('Путь').text
+    general = item.findNext('Основное').text
+
+diff_time = datetime.datetime.now() - start_time
+print(diff_time)
