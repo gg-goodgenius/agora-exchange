@@ -1,8 +1,5 @@
-import datetime
-
 from bs4 import BeautifulSoup
 
-start_time = datetime.datetime.now()
 file = open('case_2_input_big_data.xml', 'r')
 xml_file = file.read()
 
@@ -35,6 +32,3 @@ for item in soup.find_all("Номенклатура"):
     file = item.findNext('Файл').text
     path = item.findNext('Путь').text
     general = item.findNext('Основное').text
-
-diff_time = datetime.datetime.now() - start_time
-print(diff_time)
