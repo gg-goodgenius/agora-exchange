@@ -1,0 +1,22 @@
+name: deploy
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            cd notify
+            git pull 
+            ls
+            docker-compose up -d --build
+          host: ${{ secrets.SERVERIP }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.KEY }}
