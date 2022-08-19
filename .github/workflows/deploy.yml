@@ -20,4 +20,4 @@ jobs:
             docker-compose up -d --build
           host: ${{ secrets.SERVERIP }}
           username: ${{ secrets.USER }}
-          privateKey: ${{ secrets.KEY }}
+          privateKey: ${{ secrets.PRIVATE_KEY }}
