@@ -1,0 +1,1 @@
+docker exec -it marketplace python /app/manage.py createsuperuser
