@@ -10,17 +10,17 @@ for item in data['ГруппаНоменклатура']:
     tag = item['ПометкаУдаления']
 
 for item in data['ЕдиницыИзмерения']:
-    url = item['Наименование']
-    name = item['Ссылка']
+    units_of_measurement = item['ЕдиницыИзмерения']
+    url = item['Ссылка']
     full_name = item['НаименованиеПолное']
     coefficient = item['Коэффициент']
 
 for item in data['Номенклатура']:
     url = item['Ссылка']
     parent = item['Родитель']
-    name = item['Наименование']
     tag = item['ПометкаУдаления']
     article = item['Артикул']
+    name = item['Наименование']
     nds = item['СтавкаНДС']
     description = item['Описание']
     storage_unit = item['ЕдиницаХраненияОстатков']
