@@ -8,15 +8,15 @@
 </div>
 <p>&#160;</p>
 <p align="center">Our team:</p>
-<div id="badges" align="center">
+<div id="badges" align="left">
   </a>
   <p><a href="https://t.me/ruha02">
-    <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="64" alt="Telegram"/></a> - ruha02
+    <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="16" alt="Telegram"/></a> - Руслан Хайруллин 
   </p><p>
   <a href="https://t.me/Timofey1566">
-    <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="64" alt="Telegram"/>
-  </a> - Timofey1566</p><p>
+    <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="16" alt="Telegram"/>
+  </a> - Тимофей </p><p>
   <a href="https://t.me/OlyaBaskakowa">
-    <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="64" alt="Telegram"/>
-  </a> - OlyaBaskakowa </p>
+    <img src="https://media3.giphy.com/media/ZcdZ7ldgeIhfesqA6E/giphy.gif?cid=ecf05e474wnh53hqt1bc8ymt42elmsiik4l7b0zlywjph2py&rid=giphy.gif&ct=s" width="16" alt="Telegram"/>
+  </a> - Оля Баскакова</p>
 </div>
