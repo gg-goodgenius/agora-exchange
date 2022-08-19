@@ -9,11 +9,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Deploy to server
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: |
-            cd notify
+            cd agora-exchange
             git pull 
             ls
             docker-compose up -d --build
