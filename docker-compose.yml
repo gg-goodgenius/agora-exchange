@@ -67,10 +67,10 @@ services:
       - erpexch
       - celery
   nginx:
+    container_name: nginx
     build: ./nginx
     ports:
-      - 8000:80
-      - 8001:80
+      - 80:80
     depends_on:
       - marketplace
       - erpexch
