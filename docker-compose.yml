@@ -66,15 +66,12 @@ services:
       - redis
       - erpexch
       - celery
-
-    nginx:
-      build: ./nginx
-      volumes:
-        - static_volume:/home/app/web/staticfiles
-        - media_volume:/home/app/web/mediafiles
-      ports:
-        - 1337:80
-      depends_on:
-        - marketplace
-        - erpexch
-        - flower
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+      - 8001:80
+    depends_on:
+      - marketplace
+      - erpexch
+      - flower
