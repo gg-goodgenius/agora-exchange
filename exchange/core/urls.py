@@ -4,6 +4,8 @@ from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from core.views import ExchangeView
+
 Schema = get_schema_view(
    openapi.Info(
       title="API для сервиса",
@@ -15,5 +17,6 @@ Schema = get_schema_view(
 
 urlpatterns = [
     path('login/',views.obtain_auth_token),
+    path('exchange/', ExchangeView.as_view(), name='exchange'),
     path('', Schema.with_ui('redoc',), name='docs')
 ]
