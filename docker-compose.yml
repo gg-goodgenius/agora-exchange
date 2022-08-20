@@ -6,6 +6,7 @@ services:
   db:
     image: postgres
     container_name: postgres
+    restart: always
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
@@ -22,3 +23,55 @@ services:
       - DATABASE_URL=postgres://postgres:postgres@postgres/marketplace
     depends_on:
       - db
+  erpexch:
+    build: ./exchange/
+    container_name: erpexch
+    command: bash /app/runserver.sh
+    ports:
+    - "8001:8001"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres/erpexch
+    depends_on:
+      - db
+      - marketplace
+  celery:
+    build: ./exchange/
+    container_name: celery
+    command: celery -A exchange worker  --loglevel=info
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres/erpexch
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - db
+      - marketplace
+      - redis
+      - erpexch
+  redis:
+    image: redis:alpine
+    container_name: redis
+  flower:
+    container_name: flower
+    build: ./exchange/
+    command:  celery flower --port=5555
+    ports:
+      - 5555:5555
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres/erpexch
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - db
+      - marketplace
+      - redis
+      - erpexch
+      - celery
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - marketplace
+      - erpexch
+      - flower
