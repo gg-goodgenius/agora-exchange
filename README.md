@@ -1,3 +1,4 @@
+[![deploy](https://github.com/gg-goodgenius/agora-exchange/actions/workflows/deploy.yml/badge.svg)](https://github.com/gg-goodgenius/agora-exchange/actions/workflows/deploy.yml)
 <h1 align="center" font-size="14px">Agora Exchange</h1>
 <h2 align="center" font-size="14px">
   Welcome you
