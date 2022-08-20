@@ -1,34 +1,15 @@
-from bs4 import BeautifulSoup
+import datetime
+import json
 
-file = open('case_2_input_big_data.xml', 'r')
-xml_file = file.read()
+import xmltodict
 
-soup = BeautifulSoup(xml_file, 'xml')
+start_time = datetime.datetime.now()
 
-for item in soup.find_all("ГруппаНоменклатура"):
-    url = item.findNext('Ссылка').text
-    parent = item.findNext('Родитель').text
-    name = item.findNext('Наименование').text
-    tag = item.findNext('ПометкаУдаления').text
+file = f'case_2_input_data.xml'
 
-for item in soup.find_all("ЕдиницыИзмерения"):
-    url = item.findNext('Ссылка').text
-    name = item.findNext('Наименование').text
-    full_name = item.findNext('НаименованиеПолное').text
-    coefficient = item.findNext('Коэффициент').text
+with open(file) as xml_file:
+    data_dict = xmltodict.parse(xml_file.read())
+    json_data = json.dumps(data_dict, ensure_ascii=False, indent=4)
 
-for item in soup.find_all("Номенклатура"):
-    url = item.findNext('Ссылка').text
-    parent = item.findNext('Родитель').text
-    name = item.findNext('Наименование').text
-    tag = item.findNext('ПометкаУдаления').text
-    article = item.findNext('Артикул').text
-    nds = item.findNext('СтавкаНДС').text
-    description = item.findNext('Описание').text
-    storage_unit = item.findNext('ЕдиницаХраненияОстатков').text
-    characteristic = item.findNext('ВестиУчетПоХарактеристикам')
-    type = item.findNext('ТипНоменклатуры').text
-    barcode = item.findNext('Штрихкод').text
-    file = item.findNext('Файл').text
-    path = item.findNext('Путь').text
-    general = item.findNext('Основное').text
+print(datetime.datetime.now() - start_time)
+print(json_data)
