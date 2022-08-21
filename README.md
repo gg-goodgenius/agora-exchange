@@ -8,9 +8,9 @@ cd agora-exchange
 docker-compose up 
 ```
 ## Доступ
-localhost:8000 - маркетплейс
-localhost:8001 - микросервис
-localhost:5555 - flower
+- localhost:8000 - маркетплейс
+- localhost:8001 - микросервис
+- localhost:5555 - flower
 
 ## endpoints
 - [POST] localhost:8001/login/ - авторизация для получения токена
