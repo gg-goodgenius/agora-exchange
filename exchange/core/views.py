@@ -13,26 +13,25 @@ class ExchangeView(APIView):
     @swagger_auto_schema(responses={200: openapi.Response('JSON')})
     def get(self, request, *args, **kwargs):
         ''' Получение списка обновлений '''
-        try:
+        # try:
             # проверить обновления по токену и передать в celery
-            exch = Exchange.objects.filter(recipient = request.user).first()
-            print(exch)
-            #TODO: first fo deploy
-            data = exch.updates.all().first()
-            print(data)
-            ares = AsyncResult(data.resultid)
-            print(ares.state) 
-            if ares.state != 'SUCCESS':
-                result = None
-            else:
-                result = ares.get()
-            return Response({
-                'result': result
-            })
-        except Exception:
-            return Response({
-                'result': False
-            })
+        exch = Exchange.objects.filter(recipient = request.user).first()
+        print(exch)
+        #TODO: first fo deploy
+        data = exch.updates.all().first()
+        ares = AsyncResult(data.resultid)
+        if ares.state != 'SUCCESS':
+            result = None
+        else:
+            result = ares.get()
+            data.delete()
+        return Response({
+            'result': result
+        })
+        # except Exception:
+        #     return Response({
+        #         'result': False
+        #     })
 
     @swagger_auto_schema(manual_parameters=[
         openapi.Parameter('type', openapi.IN_QUERY, description="file type (xml, json, yaml)", type=openapi.TYPE_STRING),

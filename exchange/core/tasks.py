@@ -26,5 +26,5 @@ def exchange(type_data: str, data: str) -> object:
                 'object': mcls.name_class,
                 'fields': fields_result
             })
-            print(result)
+            # print(result)
     return result
