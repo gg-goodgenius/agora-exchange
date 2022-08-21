@@ -21,7 +21,11 @@ class ExchangeView(APIView):
         data = exch.updates.all().first()
         print(data)
         ares = AsyncResult(data.resultid)
-        result = ares.get()
+        print(ares.state) 
+        if ares.state != 'SUCCESS':
+            result = None
+        else:
+            result = ares.get()
         return Response({
             'result': result
         })
@@ -48,7 +52,7 @@ class ExchangeView(APIView):
             # print(task.get())
             # print(dir(task))
             # task.save()
-            du = UpdateData(exchange=exch, resultid=task.id)
+            du = UpdateData(exchange=exch, resultid=task.task_id)
             du.save()
             return Response({
                 'result':0 
