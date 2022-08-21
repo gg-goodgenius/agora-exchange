@@ -1,4 +1,4 @@
-from multiprocessing.pool import AsyncResult
+from celery.result import AsyncResult
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -18,7 +18,7 @@ class ExchangeView(APIView):
         exch = Exchange.objects.filter(recipient = request.user).first()
         print(exch)
         #TODO: first fo deploy
-        data = exch.updates.all()
+        data = exch.updates.all().first()
         print(data)
         ares = AsyncResult(data.resultid)
         result = ares.get()
