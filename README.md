@@ -12,7 +12,7 @@ localhost:8000 - маркетплейс
 localhost:8001 - микросервис
 localhost:5555 - flower
 
-# endpoints
+## endpoints
 - [POST] localhost:8001/login/ - авторизация для получения токена
 - [GET] localhost:8001/exchange/ - получить обновления для маркетплейса
 - [POST] localhost:8001/exchange/ - отправить обновления для маркетплейса (in_body: type - тип данных (поумолчанию 'xml'), file - файл с данными)
