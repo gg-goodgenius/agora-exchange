@@ -13,9 +13,9 @@ localhost:8001 - микросервис
 localhost:5555 - flower
 
 # endpoints
-[POST] localhost:8001/login/ - авторизация для получения токена
-[GET] localhost:8001/exchange/ - получить обновления для маркетплейса
-[POST] localhost:8001/exchange/ - отправить обновления для маркетплейса (in_body: type - тип данных (поумолчанию 'xml'), file - файл с данными)
+- [POST] localhost:8001/login/ - авторизация для получения токена
+- [GET] localhost:8001/exchange/ - получить обновления для маркетплейса
+- [POST] localhost:8001/exchange/ - отправить обновления для маркетплейса (in_body: type - тип данных (поумолчанию 'xml'), file - файл с данными)
 
 ## Дополнительно
 Для устновки паролей на django admin используются скрипты:
