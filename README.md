@@ -7,15 +7,21 @@ git clone https://github.com/gg-goodgenius/agora-exchange
 cd agora-exchange
 docker-compose up 
 ```
-## Доступ
-localhost:8000 - маркетплейс
-localhost:8001 - микросервис
-localhost:5555 - flower
 
-# endpoints
+## Доступ
+- localhost:8000 - маркетплейс
+- localhost:8001 - микросервис
+- localhost:5555 - flower
+
+## endpoints
 - [POST] localhost:8001/login/ - авторизация для получения токена
 - [GET] localhost:8001/exchange/ - получить обновления для маркетплейса
 - [POST] localhost:8001/exchange/ - отправить обновления для маркетплейса (in_body: type - тип данных (поумолчанию 'xml'), file - файл с данными)
+
+## Демо
+- http://erp-exch.goodgenius.ru/
+- http://flower.erp-exch.goodgenius.ru/
+- http://marketplace.erp-exch.goodgenius.ru/
 
 ## Дополнительно
 Для устновки паролей на django admin используются скрипты:
