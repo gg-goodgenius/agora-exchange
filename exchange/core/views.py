@@ -1,3 +1,4 @@
+from multiprocessing.pool import AsyncResult
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -5,7 +6,6 @@ from drf_yasg.utils import swagger_auto_schema
 from core.tasks import exchange
 from core.models import Exchange, UpdateData
 from drf_yasg import openapi
-import io 
 
 class ExchangeView(APIView):
     ''' Обмен '''
@@ -15,9 +15,13 @@ class ExchangeView(APIView):
         ''' Получение списка обновлений '''
         try:
             # проверить обновления по токену и передать в celery
-            
+            exch = Exchange.objects.filter(recipient = request.user).first()
+            #TODO: first fo deploy
+            data = exch.data.all().first()
+            ares = AsyncResult(data.resultid)
+            result = ares.get()
             return Response({
-                'result': 'GET'
+                'result': result
             })
         except Exception:
             return Response({
@@ -36,12 +40,13 @@ class ExchangeView(APIView):
             type_data = request.POST.get('type', 'xml')
             fl = request.FILES.getlist('file', None)
             fl = fl[0] if fl else None
-            data = str(fl.read())
+            data = fl.read().decode("UTF-8")
+            # print(data)
             task = exchange.apply_async(args=[type_data, data])
-            print(task.backend)
-            print(dir(task))
+            # print(task.get())
+            # print(dir(task))
             # task.save()
-            du = UpdateData(exchange=exch, taskid=task.task_id)
+            du = UpdateData(exchange=exch, resultid=task.id)
             du.save()
             return Response({
                 'result':0 

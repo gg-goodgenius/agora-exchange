@@ -47,7 +47,7 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:postgres@postgres/erpexch
       - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redisbackend:6379/0
     depends_on:
       - db
       - marketplace
@@ -56,6 +56,9 @@ services:
   redis:
     image: redis:alpine
     container_name: redis
+  redisbackend:
+    image: redis:alpine
+    container_name: redisbackend
   flower:
     container_name: flower
     build: ./exchange/
@@ -65,7 +68,7 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:postgres@postgres/erpexch
       - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redisbackend:6379/0
     depends_on:
       - db
       - marketplace

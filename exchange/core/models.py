@@ -9,8 +9,8 @@ class Exchange(models.Model):
         return f"{self.sendler} - {self.recipient}"
 
 class UpdateData(models.Model):
-    exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE)
-    taskid = models.CharField(max_length=1000)
+    exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE, related_name='data')
+    resultid = models.CharField(max_length=1000)
     finish = models.BooleanField(default=False)
 
     def __str__(self) -> str:
