@@ -9,12 +9,12 @@ class Exchange(models.Model):
         return f"{self.sendler} - {self.recipient}"
 
 class UpdateData(models.Model):
-    exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE, related_name='data')
+    exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE, related_name='updates')
     resultid = models.CharField(max_length=1000)
     finish = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return f"{self.taskid}"
+        return f"{self.resultid}"
 
 
 class MappingClass(models.Model):
