@@ -1,0 +1,1 @@
+docker exec -it erpexch python /app/manage.py createsuperuser

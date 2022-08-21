@@ -4,17 +4,13 @@ from django.utils.translation import gettext_lazy as l_
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 
-
-
-class Category(MPTTModel):
-    parent = models.ForeignKey('self', blank=True, null=True, verbose_name=l_('Родительская категория'), related_name='child', on_delete=models.CASCADE)
+class Category(MPTTModel): 
+    parent = models.ForeignKey('self', blank=True, null=True, verbose_name=l_('Родительская категория'), related_name='child', on_delete=models.CASCADE) 
     name = models.CharField(max_length=550)
 
     class Meta:
         verbose_name = l_('Категория товаров')
         verbose_name_plural = l_('Категории товаров')
-
-
 
 class MeasureUnit(models.Model):
     name = models.CharField(max_length=255, verbose_name=l_('Название'))
@@ -23,8 +19,6 @@ class MeasureUnit(models.Model):
     class Meta:
         verbose_name = l_('Единица измерения')
         verbose_name_plural = l_('Единицы измерения')
-
-
 
 class Product(models.Model):
 

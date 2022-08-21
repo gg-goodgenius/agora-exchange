@@ -1,40 +1,24 @@
 from celery import shared_task
+from bs4 import BeautifulSoup
+from core.models import MappingField, MappingClass
 
-@shared_task
-def exchange(type: str, data: str) -> object:
+@shared_task(ignore_result=False)
+def exchange(type_data: str, data: str) -> object:
     """ Конвертция данных """
-    from bs4 import BeautifulSoup
-
-    data = open('case_2_input_big_data.xml', 'r')
-    xml_file = file.read()
-
-    soup = BeautifulSoup(xml_file, 'xml')
-
-    for item in soup.find_all("ГруппаНоменклатура"):
-        url = item.findNext('Ссылка').text
-        parent = item.findNext('Родитель').text
-        name = item.findNext('Наименование').text
-        tag = item.findNext('ПометкаУдаления').text
-
-    for item in soup.find_all("ЕдиницыИзмерения"):
-        url = item.findNext('Ссылка').text
-        name = item.findNext('Наименование').text
-        full_name = item.findNext('НаименованиеПолное').text
-        coefficient = item.findNext('Коэффициент').text
-
-    for item in soup.find_all("Номенклатура"):
-        url = item.findNext('Ссылка').text
-        parent = item.findNext('Родитель').text
-        name = item.findNext('Наименование').text
-        tag = item.findNext('ПометкаУдаления').text
-        article = item.findNext('Артикул').text
-        nds = item.findNext('СтавкаНДС').text
-        description = item.findNext('Описание').text
-        storage_unit = item.findNext('ЕдиницаХраненияОстатков').text
-        characteristic = item.findNext('ВестиУчетПоХарактеристикам')
-        type = item.findNext('ТипНоменклатуры').text
-        barcode = item.findNext('Штрихкод').text
-        file = item.findNext('Файл').text
-        path = item.findNext('Путь').text
-        general = item.findNext('Основное').text
-    
+    if type_data == 'xml':
+        soup = BeautifulSoup(data, 'xml')
+        mclss = MappingClass.objects.all()
+        result = []
+        for mcls in mclss:
+            for item in soup.find_all(mcls.name_data):
+                flds = mcls.fields.all()
+                fields_result = []
+                for fld in flds:
+                    value = item.findNext(fld.name_data)
+                    if value:
+                        fields_result.append(dict.fromkeys([fld.name_field], value.text))
+                result.append({
+                    'object': mcls.name_class,
+                    'fields': fields_result
+                })
+        return result
